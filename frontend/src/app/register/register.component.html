@@ -1,0 +1,169 @@
+<div class="min-h-screen flex items-center justify-center bg-slate-950 px-4 py-12 relative overflow-hidden">
+  <!-- Decorative Background Glows -->
+  <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+  <div class="w-full max-w-xl bg-slate-900/40 backdrop-blur-xl border border-slate-800 rounded-2xl shadow-2xl p-8 relative z-10">
+    <div class="text-center mb-8">
+      <h2 class="text-3xl font-extrabold tracking-tight bg-gradient-to-r from-sky-400 to-indigo-400 bg-clip-text text-transparent">
+        Create Account
+      </h2>
+      <p class="mt-2 text-sm text-slate-400">
+        Get started by creating your user profile
+      </p>
+    </div>
+
+    <!-- Success Alert -->
+    <div *ngIf="successMessage" class="mb-6 p-4 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm rounded-lg flex items-start space-x-2">
+      <svg class="h-5 w-5 text-emerald-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+      <span>{{ successMessage }}</span>
+    </div>
+
+    <!-- Error Alert -->
+    <div *ngIf="errorMessage" class="mb-6 p-4 bg-red-500/10 border border-red-500/20 text-red-400 text-sm rounded-lg flex items-start space-x-2">
+      <svg class="h-5 w-5 text-red-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+      </svg>
+      <span>{{ errorMessage }}</span>
+    </div>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="space-y-6">
+      <!-- Username Field -->
+      <div>
+        <label for="username" class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">
+          Username
+        </label>
+        <input
+          id="username"
+          type="text"
+          formControlName="username"
+          class="w-full bg-slate-950/40 border border-slate-800 text-slate-100 placeholder-slate-600 rounded-lg px-4 py-3 text-sm focus:border-sky-500 focus:ring-1 focus:ring-sky-500 outline-none transition-all"
+          [class.border-red-500]="registerForm.get('username')?.touched && registerForm.get('username')?.invalid"
+          placeholder="johndoe"
+        />
+        <div *ngIf="registerForm.get('username')?.touched && registerForm.get('username')?.invalid" class="mt-1 text-xs text-red-400">
+          <span *ngIf="registerForm.get('username')?.errors?.['required']">Username is required.</span>
+          <span *ngIf="registerForm.get('username')?.errors?.['minlength']">Must be at least 3 characters.</span>
+        </div>
+      </div>
+
+      <!-- First & Last Name Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label for="firstName" class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">
+            First Name
+          </label>
+          <input
+            id="firstName"
+            type="text"
+            formControlName="firstName"
+            class="w-full bg-slate-950/40 border border-slate-800 text-slate-100 placeholder-slate-600 rounded-lg px-4 py-3 text-sm focus:border-sky-500 focus:ring-1 focus:ring-sky-500 outline-none transition-all"
+            [class.border-red-500]="registerForm.get('firstName')?.touched && registerForm.get('firstName')?.invalid"
+            placeholder="John"
+          />
+          <div *ngIf="registerForm.get('firstName')?.touched && registerForm.get('firstName')?.invalid" class="mt-1 text-xs text-red-400">
+            <span *ngIf="registerForm.get('firstName')?.errors?.['required']">First name is required.</span>
+            <span *ngIf="registerForm.get('firstName')?.errors?.['minlength']">Must be at least 2 characters.</span>
+          </div>
+        </div>
+
+        <div>
+          <label for="lastName" class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">
+            Last Name
+          </label>
+          <input
+            id="lastName"
+            type="text"
+            formControlName="lastName"
+            class="w-full bg-slate-950/40 border border-slate-800 text-slate-100 placeholder-slate-600 rounded-lg px-4 py-3 text-sm focus:border-sky-500 focus:ring-1 focus:ring-sky-500 outline-none transition-all"
+            [class.border-red-500]="registerForm.get('lastName')?.touched && registerForm.get('lastName')?.invalid"
+            placeholder="Doe"
+          />
+          <div *ngIf="registerForm.get('lastName')?.touched && registerForm.get('lastName')?.invalid" class="mt-1 text-xs text-red-400">
+            <span *ngIf="registerForm.get('lastName')?.errors?.['required']">Last name is required.</span>
+            <span *ngIf="registerForm.get('lastName')?.errors?.['minlength']">Must be at least 2 characters.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phone Number Field -->
+      <div>
+        <label for="phoneNo" class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">
+          Phone Number
+        </label>
+        <input
+          id="phoneNo"
+          type="text"
+          formControlName="phoneNo"
+          class="w-full bg-slate-950/40 border border-slate-800 text-slate-100 placeholder-slate-600 rounded-lg px-4 py-3 text-sm focus:border-sky-500 focus:ring-1 focus:ring-sky-500 outline-none transition-all"
+          [class.border-red-500]="registerForm.get('phoneNo')?.touched && registerForm.get('phoneNo')?.invalid"
+          placeholder="+1234567890"
+        />
+        <div *ngIf="registerForm.get('phoneNo')?.touched && registerForm.get('phoneNo')?.invalid" class="mt-1 text-xs text-red-400">
+          <span *ngIf="registerForm.get('phoneNo')?.errors?.['required']">Phone number is required.</span>
+        </div>
+      </div>
+
+      <!-- Address Field (Textarea) -->
+      <div>
+        <label for="address" class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">
+          Address
+        </label>
+        <textarea
+          id="address"
+          formControlName="address"
+          rows="3"
+          class="w-full bg-slate-950/40 border border-slate-800 text-slate-100 placeholder-slate-600 rounded-lg px-4 py-3 text-sm focus:border-sky-500 focus:ring-1 focus:ring-sky-500 outline-none transition-all resize-none"
+          [class.border-red-500]="registerForm.get('address')?.touched && registerForm.get('address')?.invalid"
+          placeholder="123 Main St, City, Country"
+        ></textarea>
+        <div *ngIf="registerForm.get('address')?.touched && registerForm.get('address')?.invalid" class="mt-1 text-xs text-red-400">
+          <span *ngIf="registerForm.get('address')?.errors?.['required']">Address is required.</span>
+        </div>
+      </div>
+
+      <!-- Password Field -->
+      <div>
+        <label for="password" class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">
+          Password
+        </label>
+        <input
+          id="password"
+          type="password"
+          formControlName="password"
+          class="w-full bg-slate-950/40 border border-slate-800 text-slate-100 placeholder-slate-600 rounded-lg px-4 py-3 text-sm focus:border-sky-500 focus:ring-1 focus:ring-sky-500 outline-none transition-all"
+          [class.border-red-500]="registerForm.get('password')?.touched && registerForm.get('password')?.invalid"
+          placeholder="••••••••"
+        />
+        <div *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.invalid" class="mt-1 text-xs text-red-400">
+          <span *ngIf="registerForm.get('password')?.errors?.['required']">Password is required.</span>
+          <span *ngIf="registerForm.get('password')?.errors?.['minlength']">Password must be at least 6 characters.</span>
+        </div>
+      </div>
+
+      <!-- Submit button -->
+      <button
+        type="submit"
+        [disabled]="isLoading"
+        class="w-full bg-gradient-to-r from-sky-500 to-indigo-500 hover:from-sky-400 hover:to-indigo-400 text-white font-medium py-3 rounded-lg text-sm shadow-lg hover:shadow-sky-500/15 transition-all duration-200 active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none flex justify-center items-center space-x-2"
+      >
+        <svg *ngIf="isLoading" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+        <span>{{ isLoading ? 'Creating account...' : 'Create Account' }}</span>
+      </button>
+    </form>
+
+    <div class="mt-6 text-center">
+      <p class="text-xs text-slate-400">
+        Already have an account?
+        <a routerLink="/login" class="text-sky-400 hover:text-sky-300 font-semibold transition-colors">
+          Sign In
+        </a>
+      </p>
+    </div>
+  </div>
+</div>
