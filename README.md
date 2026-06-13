@@ -95,28 +95,6 @@ python3 test_e2e.py
 ```
 
 ---
-
-## 📤 Pushing to GitHub
-
-To store this repository on GitHub, execute the following commands in the root directory:
-
-1. **Initialize Git Repository**:
-   ```bash
-   git init
-   ```
-2. **Add all files**:
-   ```bash
-   git add .
-   ```
-3. **Commit your changes**:
-   ```bash
-   git commit -m "Initial commit: Set up Angular + Spring Boot User Dashboard App"
-   ```
-4. **Link to your GitHub Repository**:
-   * Create a new empty repository on your GitHub account.
-   * Add the remote origin URL:
-     ```bash
-     git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPOSITORY_NAME.git
      ```
 5. **Rename branch and Push**:
    ```bash
