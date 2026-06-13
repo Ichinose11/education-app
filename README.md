@@ -1,4 +1,4 @@
-# 📊 User Dashboard Application
+# 📊 User Dashboard App
 
 A secure, scalable web application featuring role-based user management. Built with **Angular** (Frontend), **Spring Boot** (Backend), and **PostgreSQL** (Database).
 
