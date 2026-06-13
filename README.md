@@ -95,9 +95,3 @@ python3 test_e2e.py
 ```
 
 ---
-     ```
-5. **Rename branch and Push**:
-   ```bash
-   git branch -M main
-   git push -u origin main
-   ```
